@@ -1,140 +1,148 @@
-# 🛰️ WebScout — AI Web Research Agent
+# 🛰️ WebScout — AI-Powered Autonomous Web Research Agent
 
-> **Built for the *WeMakeDevs: Into the Scrape-Verse Hackathon* sponsored by Bright Data**  
-> *Autonomous web intelligence agent with deterministic multi-factor ranking and self-healing web scrapers.*
+[![Bright Data Scraper Studio](https://img.shields.io/badge/Bright%20Data-Scraper%20Studio-orange?style=for-the-badge&logo=datadog)](https://brightdata.com)
+[![Google Gemini](https://img.shields.io/badge/Google%20Gemini-2.5%20Flash-blue?style=for-the-badge&logo=google)](https://ai.google.dev)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com)
+[![React](https://img.shields.io/badge/React-18.3-61DAFB?style=for-the-badge&logo=react)](https://react.dev)
+[![Tests](https://img.shields.io/badge/Tests-25%2F25%20Passing%20(100%25)-brightgreen?style=for-the-badge)](https://github.com/ABHIN0VB/Webscout)
 
----
-
-## 🌟 Overview
-
-**WebScout** is an autonomous AI product research agent designed to transform unstructured, ever-changing web data into confident purchase decisions. 
-
-Unlike traditional search engines that dump unorganized listings, WebScout:
-1. **Parses complex, natural-language requirements** (use-cases, hard budget ceilings, spec preferences).
-2. **Collects live, structured product data** from the web using **Bright Data Scraper Studio**.
-3. **Cleans, normalizes, and deduplicates** messy marketplace formats.
-4. **Deterministically scores and ranks candidates (0–100%)** across budget fit, CPU benchmark tiers, RAM multitasking, fast storage, and graphics.
-5. **Surfaces transparent recommendation rationales**, trade-offs, and interactive side-by-side spec comparisons.
+> **Built for the *WeMakeDevs: Into the Scrape-Verse Hackathon* sponsored by Bright Data.**  
+> *Transforming messy web pages into confident buying decisions through resilient scraping and deterministic AI.*
 
 ---
 
-## ⚡ Key Highlights & Architecture
+## 🎯 The Problem
+
+Every day, buyers waste hours browsing dozens of e-commerce tabs, comparing confusing specifications, and dealing with outdated prices. Traditional search engines only match keywords and dump thousands of unsorted links—leading to **decision fatigue and buyer remorse**.
+
+Meanwhile, standard web scrapers **break constantly** whenever websites tweak their HTML structure or CSS class names.
+
+---
+
+## 💡 The Solution: WebScout
+
+**WebScout** is an end-to-end autonomous research consultant that combines:
+1. **Bright Data Scraper Studio**: Crawls real marketplace websites and automatically self-heals when site layouts change.
+2. **Deterministic Mathematical Scoring**: Evaluates candidate products against your exact budget, CPU/GPU tiers, and RAM needs with 100% mathematical transparency (no LLM hallucinations in ranking).
+3. **Generative AI Insights (Gemini 2.5 Flash)**: Explains the exact strengths, weaknesses, and trade-offs of the top recommendation.
+
+---
+
+## ⚡ How It Works (The 5-Step Pipeline)
 
 ```
-                    ┌────────────────────────┐
-                    │ Natural Language Query │
-                    └───────────┬────────────┘
-                                │
-                                ▼
-               ┌─────────────────────────────────┐
-               │   Gemini 2.5 Flash / AI Parser  │
-               │ (Category, Budget, Preferences) │
-               └────────────────┬────────────────┘
-                                │
-                                ▼
-               ┌─────────────────────────────────┐
-               │    Bright Data Scraper Studio   │
-               │   (Remote Crawler / Collector)  │
-               └────────────────┬────────────────┘
-                                │
-                                ▼
-               ┌─────────────────────────────────┐
-               │  Normalization & Deduplication  │
-               │ (SHA-256 Hashes, Strict Budget) │
-               └────────────────┬────────────────┘
-                                │
-                                ▼
-               ┌─────────────────────────────────┐
-               │  Deterministic Scoring Engine   │
-               │ (Budget 25%, CPU 20%, RAM 15%…) │
-               └────────────────┬────────────────┘
-                                │
-                                ▼
-               ┌─────────────────────────────────┐
-               │    Interactive React Dashboard  │
-               │ (Winner Card, Spec Matrix, Logs)│
-               └─────────────────────────────────┘
+ ┌─────────────────────────────────────────────────────────────────────────────┐
+ │                                 USER PROMPT                                 │
+ │  "Best lightweight budget laptop for computer science student under 50k"    │
+ └──────────────────────────────────────┬──────────────────────────────────────┘
+                                        │
+                                        ▼
+ ┌─────────────────────────┐   ┌──────────────────────────┐   ┌────────────────────────┐
+ │ 1. Intent Extraction    │   │ 2. Web Collection        │   │ 3. Normalization       │
+ │ Gemini parses budget,   │──▶│ Bright Data Collector    │──▶│ Cleans INR currencies, │
+ │ category, & RAM specs   │   │ crawls Smartprix live    │   │ SHA-256 deduplication  │
+ └─────────────────────────┘   └──────────────────────────┘   └────────────────────────┘
+                                                                           │
+                                                                           ▼
+ ┌─────────────────────────┐                                  ┌────────────────────────┐
+ │ 5. Executive Summary    │                                  │ 4. Deterministic Rank  │
+ │ Gemini writes rationale │◀─────────────────────────────────│ Weighted math scoring  │
+ │ & trade-off breakdown   │                                  │ (Budget, CPU, RAM...)  │
+ └─────────────────────────┘                                  └────────────────────────┘
 ```
 
 ---
 
-## 🛡️ Bright Data Scraper Studio & Self-Healing Integration
+## 🛡️ Bright Data Scraper Studio & Self-Healing Resilience
 
-WebScout uses **Bright Data Scraper Studio** as its core web-data infrastructure:
+WebScout treats web scraping as mission-critical infrastructure rather than a fragile script:
 
-- **Target Source**: `https://www.smartprix.com/laptops`
-- **Collector ID**: Created and managed through the Bright Data CLI (`bdata`) and DCA API.
-- **Self-Healing Resilience (`bdata scraper heal`)**: When target website DOM elements change, Bright Data's AI adapts the selector schema without changing the Collector ID, ensuring zero downtime for downstream applications.
+### 1. Collector Lifecycle
+- **Target URL**: `https://www.smartprix.com/laptops`
+- **Collector ID**: Created once via Bright Data CLI and remains **constant** across all runs.
+- **API Trigger**: Dispatches asynchronous requests to Bright Data's distributed browser cloud (`POST /dca/trigger`).
+
+### 2. Zero-Downtime Self-Healing (`bdata scraper heal`)
+When a target website updates its DOM structure or class names:
+- Traditional scrapers crash and return `null` values.
+- **Bright Data Scraper Studio AI** inspects the DOM diff, re-maps the extraction selectors, and recovers data **under the exact same Collector ID**.
+- WebScout's built-in **Scraper Health Dashboard** (`/scraper`) visually demonstrates this recovery timeline with zero disruption to downstream ranking.
 
 ---
 
-## 🚀 Features
+## ⚖️ Deterministic Scoring vs Black-Box AI
 
-- 🧠 **Universal Natural Language Parsing**: Handles queries like *"Best lightweight laptop for computer science student under 50k"* or *"High-end 4K video editing laptop with 32GB RAM under 2.5 Lakh"*.
-- ⚖️ **Deterministic Mathematical Scoring**: No black-box guesses. Scores are calculated transparently with visible percentage breakdowns.
-- 🎯 **Strict Budget Ceiling Guardrails**: Automatically filters out overpriced listings to guarantee recommendations match the user's real budget.
-- 📊 **Multi-Product Comparison**: Compare 2–4 products side-by-side with an auto-generated spec matrix.
-- 📈 **Scraper Health & Analytics**: Real-time dashboard showing collector health, recovery timelines, and success rates.
-- 🌐 **Dual-Engine Execution**: Seamlessly runs with live Bright Data collectors or resilient local simulation.
+Unlike generic search apps that ask an LLM to "guess the best laptop", WebScout uses a **strict, multi-factor mathematical scoring engine**:
+
+$$\text{Final Score} = 0.25(\text{Budget}) + 0.20(\text{CPU}) + 0.15(\text{RAM}) + 0.15(\text{Storage}) + 0.15(\text{GPU}) + 0.10(\text{Display})$$
+
+| Factor | Weight | Scoring Logic |
+| :--- | :---: | :--- |
+| **Budget Fit** | **25%** | 100% if under budget; exponential penalty if exceeding budget ceiling |
+| **CPU Performance** | **20%** | Benchmark tier ranking (e.g. Core Ultra / i9 > Ryzen 7 / i7 > Ryzen 5 / i5 > i3) |
+| **RAM Multitasking** | **15%** | Evaluates capacity (32GB / 16GB dual-channel vs 8GB base) |
+| **Storage Speed** | **15%** | Rewards high-speed NVMe PCIe SSDs over slower drives |
+| **GPU / Graphics** | **15%** | Evaluates dedicated Ray Tracing GPUs (RTX 4080/4060) for 3D/gaming needs |
+| **Display Quality** | **10%** | High refresh rates (144Hz–240Hz), 4K resolutions, and OLED panels |
+
+---
+
+## 🚀 Key Features
+
+- 🧠 **Universal Multi-Category Intelligence**: Handles Laptops, 4K Monitors, Mechanical Keyboards, Smartphones, Audio, Cameras, Furniture, and Pet Supplies.
+- 🎯 **Strict Budget Guardrails**: Eliminates out-of-budget noise so a ₹50,000 search never shows ₹2.5 Lakh machines.
+- 📊 **Interactive Comparison Matrix**: Side-by-side spec comparison table for up to 4 selected products.
+- 📈 **Real-Time Scraper Analytics**: Visual health cards, recovery time trackers, and historical run reliability charts.
+- 🛡️ **Dual-Engine Resilience**: Supports both live Bright Data collectors and seeded marketplace data for offline demonstrations.
 
 ---
 
 ## 📦 Tech Stack
 
-- **Frontend**: React 18, Vite 5, Tailwind CSS, Lucide React, Recharts, React Router v6
-- **Backend**: FastAPI, Pydantic v2, SQLAlchemy (Async), aiosqlite / PostgreSQL
-- **AI & LLM**: Google Gemini 2.5 Flash (`google-genai`)
+- **Backend**: FastAPI (Python 3.11+), Async SQLAlchemy, Pydantic v2, aiosqlite / PostgreSQL
+- **Frontend**: React 18, Vite 5, Tailwind CSS, Lucide React, Recharts
+- **AI & Reasoning**: Google Gemini 2.5 Flash (`google-genai`)
 - **Web Infrastructure**: Bright Data Scraper Studio, Bright Data CLI (`@brightdata/cli`)
 
 ---
 
-## 🛠️ Quick Start & Installation
+## 🛠️ Quick Start Guide
 
-### 1. Prerequisites
-- Python 3.11+
-- Node.js 18+ and npm
-- Bright Data Account & Google AI Studio Key (Optional for live scraping)
-
-### 2. Clone the Repository
+### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/webscout.git
-cd webscout
+git clone https://github.com/ABHIN0VB/Webscout.git
+cd Webscout
 ```
 
-### 3. Environment Configuration
-Copy the example environment file and configure your keys:
+### 2. Configure Environment (`.env`)
 ```bash
 cp .env.example .env
 ```
 
-Edit `.env`:
 ```ini
-# Bright Data Configuration
-BRIGHTDATA_API_TOKEN=your_brightdata_token_here
+# Bright Data Scraper Studio
+BRIGHTDATA_API_TOKEN=your_token_here
 BRIGHTDATA_COLLECTOR_ID=your_collector_id_here
 BRIGHTDATA_TARGET_URL=https://www.smartprix.com/laptops
 
-# Database (Local SQLite auto-configured)
+# Database (Auto-configured SQLite)
 DATABASE_URL=sqlite+aiosqlite:///./webscout.db
 
-# LLM (Google Gemini)
+# Google Gemini (AI Studio)
 LLM_API_KEY=your_gemini_api_key_here
 LLM_MODEL=gemini-2.5-flash
 
-# Mode (false = Live Bright Data, true = Local Seed)
 DEMO_MODE=false
 ```
 
----
-
-### 4. Running the Backend
+### 3. Run Backend (Terminal 1)
 ```bash
 cd backend
 pip install -r requirements.txt
 python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
-### 5. Running the Frontend
+### 4. Run Frontend (Terminal 2)
 ```bash
 cd frontend
 npm install
@@ -145,28 +153,32 @@ Open **`http://localhost:5173`** in your browser!
 
 ---
 
-## 🧪 Running Automated Tests
+## 🧪 Automated Testing
 
-Run the complete test suite across normalization, deduplication, scoring, and API endpoints:
+WebScout includes a comprehensive automated test suite with **100% passing tests**:
 
 ```bash
 python -m pytest tests/ -v
 ```
 
-All 25 tests pass out of the box with 100% test coverage on core ranking logic.
+```
+======================== 25 passed, 1 warning in 4.00s ========================
+```
 
 ---
 
-## 🏆 Hackathon Submission Checklist
+## 🏆 Hackathon Evaluation Summary
 
-- [x] Bright Data Scraper Studio Collector integration
-- [x] Real-world downstream product (WebScout Research Agent)
-- [x] Self-Healing Scraper documentation and monitoring (`/scraper`)
-- [x] Deterministic multi-factor ranking engine
-- [x] Full automated test suite (25/25 tests passing)
-- [x] Responsive, polished React UI with dark theme & glassmorphism
+| Hackathon Reward Criteria | How WebScout Delivers |
+| :--- | :--- |
+| **1. Potential Impact** | Solves e-commerce decision fatigue by delivering clear recommendations in seconds. |
+| **2. Creativity & Innovation** | Combines deterministic math scoring with generative AI trade-off analysis. |
+| **3. Technical Excellence** | Full async FastAPI backend, SHA-256 deduplication, strict budget filtering, 25/25 unit tests. |
+| **4. Bright Data Scraper Studio** | Integrates remote DCA trigger API, custom collector schemas, and web data normalization. |
+| **5. Reliability & Self-Healing** | Demonstrates `bdata scraper heal` resilience with persistent Collector ID and live telemetry. |
+| **6. Presentation** | Glassmorphic React dashboard, spec comparison matrix, and interactive charts. |
 
 ---
 
 ## 📄 License
-MIT License. Built for the WeMakeDevs Into the Scrape-Verse Hackathon.
+MIT License. Created for the **WeMakeDevs: Into the Scrape-Verse Hackathon**.
